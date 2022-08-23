@@ -1,0 +1,22 @@
+on:
+  workflow_call:
+    inputs:
+      text1:
+        required: true
+        type: string
+      text2:
+        required: true
+        type: string      
+jobs:
+  reusable_workflow_job:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: "reusable step"
+        if: ${{ inputs.text1 == inputs.text2}}
+        run: |
+          echo "Son iguales"
+      - name: "reusable step"
+        if: ${{ inputs.text1 != inputs.text2}}
+        run: |
+          echo "Son distintos"          
